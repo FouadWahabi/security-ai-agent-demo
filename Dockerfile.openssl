@@ -1,0 +1,19 @@
+# Use Debian 11 (Bullseye) as base image
+FROM debian:11-slim
+
+# Set noninteractive installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install the specific version of OpenSSL
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    openssl=1.1.1w-0+deb11u1 \
+    ca-certificates && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
+
+# Verify OpenSSL version
+RUN openssl version
+
+# Set default command
+CMD ["openssl", "version"]
