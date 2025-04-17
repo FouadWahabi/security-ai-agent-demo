@@ -82,7 +82,7 @@ resource "aws_security_group" "ssh" {
 
 # Create an EC2 instance
 resource "aws_instance" "public" {
-  ami           = "ami-000a08b963606bb82"  # Debian 11 Bullseye in us-east-1
+  ami           = "ami-000a08b963606bb82"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.ssh.id]
